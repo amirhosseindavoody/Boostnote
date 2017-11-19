@@ -4,6 +4,7 @@ const path = require('path')
 
 var error = null
 
+// check if --finder argument is passed to the program
 function isFinderCalled () {
   var argv = process.argv.slice(1)
   return argv.some((arg) => arg.match(/--finder/))
@@ -14,6 +15,7 @@ function execMainApp () {
   const updateDotExePath = path.join(appRootPath, 'Update.exe')
   const exeName = path.basename(process.execPath)
 
+  // this is related to the Squirrel package related to update and installing in windows platform
   function spawnUpdate (args, cb) {
     var stdout = ''
     var updateProcess = null
@@ -43,6 +45,9 @@ function execMainApp () {
     })
   }
 
+  // handle Squirrel package for windows platform
+  // Squirrel is both a set of tools and a library, to completely manage both installation and updating your Desktop Windows application
+  // look here for more: https://github.com/Squirrel/Squirrel.Windows/blob/master/docs/goals.md
   var handleStartupEvent = function () {
     if (process.platform !== 'win32') {
       return false
@@ -75,11 +80,15 @@ function execMainApp () {
     return
   }
 
+  // run the main-app script
   require('./lib/main-app')
 }
 
+///////////////////////////////////
+// this is the start of the program
+///////////////////////////////////
 if (isFinderCalled()) {
-  require('./lib/finder-app')
+  require('./lib/finder-app') // if the --finder argument is passed to the program, execute the finder-app.js
 } else {
   execMainApp()
 }
