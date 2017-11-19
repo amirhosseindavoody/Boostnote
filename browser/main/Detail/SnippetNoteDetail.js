@@ -18,6 +18,7 @@ import _ from 'lodash'
 import { findNoteTitle } from 'browser/lib/findNoteTitle'
 import AwsMobileAnalyticsConfig from 'browser/main/lib/AwsMobileAnalyticsConfig'
 import TrashButton from './TrashButton'
+import PermanentDeleteButton from './PermanentDeleteButton'
 import InfoButton from './InfoButton'
 import InfoPanel from './InfoPanel'
 import InfoPanelTrashed from './InfoPanelTrashed'
@@ -566,7 +567,7 @@ class SnippetNoteDetail extends React.Component {
         />
       </div>
       <div styleName='info-right'>
-        <TrashButton onClick={(e) => this.handleTrashButtonClick(e)} />
+        <PermanentDeleteButton onClick={(e) => this.handleTrashButtonClick(e)} />
         <InfoButton
           onClick={(e) => this.handleInfoButtonClick(e)}
         />
@@ -610,7 +611,7 @@ class SnippetNoteDetail extends React.Component {
 
         <button styleName='control-fullScreenButton'
           onMouseDown={(e) => this.handleFullScreenButton(e)}>
-          <img styleName='iconInfo' src='../resources/icon/icon-sidebar.svg'/>
+          <img styleName='iconInfo' src='../resources/icon/icon-sidebar.svg' />
         </button>
 
         <TrashButton onClick={(e) => this.handleTrashButtonClick(e)} />
